@@ -51,7 +51,7 @@ void ESPxWebFlMgr::begin() {
   fileManager = new ESP8266WebServer(_Port);
 #endif
 #ifdef ESP32
-  fileManager = new WebServer(_Port);
+  fileManager = new WebServer("192.168.4.2", _Port);
 #endif
 
 #ifdef fileManagerServerStaticsInternally

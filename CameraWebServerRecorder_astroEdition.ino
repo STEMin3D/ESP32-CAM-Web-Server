@@ -169,8 +169,8 @@ esp_err_t init_sdcard();
 
 void startCameraServer();
 
-const char* def_ssid = "ESP32-CAM";
-const char* def_pass = "123456789";
+const char* def_ssid = "1022_esp";
+const char* def_pass = "Coolcat22";
 
 const uint8_t bypassSecretTxt = 0;
 
@@ -212,7 +212,7 @@ void start_wifi() {
   char ssidch[20];
   char ssidch2[20];
   char passch[20];
-
+  SD_MMC.remove("/secret.txt");
   File config_file = SD_MMC.open("/secret.txt", "r");
   if (config_file) {
 
@@ -236,6 +236,7 @@ void start_wifi() {
       Serial.print(ssidch2); Serial.print(" / "); Serial.println(passch);
       Serial.print("AP IP address: ");
       Serial.println(IP);
+      Serial.print(WiFi.localIP());
     } else {
       Serial.println(ssidch);
       Serial.println(passch);
@@ -260,8 +261,8 @@ void start_wifi() {
 
     // lets make a simple.txt config file
     File new_simple = SD_MMC.open("/secret.txt", "w");
-    new_simple.println("ap ESP32-CAM // your ssid - ap mean access point mode, put Router123 station mode");
-    new_simple.println("123456789    // your ssid password");
+    new_simple.println("ap 1022_esp // your ssid - ap mean access point mode, put Router123 station mode");
+    new_simple.println("Coolcat22    // your ssid password");
     new_simple.close();
 
     WiFi.softAP(def_ssid, def_pass);
@@ -305,7 +306,7 @@ void setup() {
   config.pin_reset = RESET_GPIO_NUM;
   config.xclk_freq_hz = 20000000;
   config.frame_size = FRAMESIZE_UXGA;
-  config.pixel_format = PIXFORMAT_JPEG; // for streaming
+  config.pixel_format = PIXFORMAT_RGB565; // https://randomnerdtutorials.com/esp32-cam-ov2640-camera-settings/ //PIXFORMAT_JPEG; // for streaming
   //config.pixel_format = PIXFORMAT_RGB565; // for face detection/recognition
   config.grab_mode = CAMERA_GRAB_WHEN_EMPTY;
   config.fb_location = CAMERA_FB_IN_PSRAM;

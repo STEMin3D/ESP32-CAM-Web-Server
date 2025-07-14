@@ -2,8 +2,6 @@
 
 https://github.com/paoloinverse/CameraWebServerRecordeR_AstroEdition
 
-
-
 This is a modified version of James Zahary's awesome work at https://github.com/jameszah/CameraWebServerRecorder , I added a number of functions to turn his version of the  espressif ESP32-CAM CameraWebServer example into a functional Astrophotography / Timelapse / Dash camera device. 
 
 First of all, a filemanager is available on tcp port 8080. 
